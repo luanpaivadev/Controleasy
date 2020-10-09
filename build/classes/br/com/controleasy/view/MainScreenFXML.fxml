@@ -201,11 +201,6 @@
                   </VBox>
                </children>
             </Group>
-            <Label layoutX="1066.0" layoutY="14.0" text="Atualizado em 06/10/2020" textFill="RED" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
-               <font>
-                  <Font name="System Bold" size="12.0" />
-               </font>
-            </Label>
             <Pane layoutX="20.0" layoutY="263.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;">
                <children>
                   <PieChart fx:id="pieChartDespesas" layoutX="14.0" layoutY="11.0" prefHeight="378.0" prefWidth="472.0" styleClass="PieChart" titleSide="BOTTOM" />
@@ -215,39 +210,35 @@
       </AnchorPane>
       <Pane prefHeight="45.0" styleClass="Pane_Bottom">
          <children>
-            <Group layoutX="14.0" layoutY="13.0">
-               <children>
-                  <Label text="ID :" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </Label>
-                  <Label fx:id="lblId" layoutX="29.0" text="id" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                  </Label>
-                  <Label layoutX="50.0" text="USUÁRIO :" textFill="WHITE">
-                     <padding>
-                        <Insets right="10.0" />
-                     </padding>
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-                  <Label fx:id="lblUsuario" layoutX="120.0" text="usuario" textFill="WHITE">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Label>
-               </children>
-            </Group>
+            <Label layoutX="12.0" layoutY="13.0" text="Id:" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </Label>
+            <Label fx:id="lblId" layoutX="35.0" layoutY="14.0" text="id" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+               <padding>
+                  <Insets right="10.0" />
+               </padding>
+            </Label>
+            <Label layoutX="46.0" layoutY="14.0" text="Usuário:" textFill="WHITE">
+               <padding>
+                  <Insets left="10.0" right="10.0" />
+               </padding>
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Label fx:id="lblUsuario" layoutX="112.0" layoutY="14.0" text="usuario" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
          </children>
       </Pane>
    </children>

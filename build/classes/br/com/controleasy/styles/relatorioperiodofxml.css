@@ -10,7 +10,16 @@
     -fx-font-size: 16px;
 }
 
+.Button {
+    -fx-background-color: #00003C;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: System;
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
 .Button:hover {
-    -fx-background-color: #1FAFBF;
-    -fx-text-fill: #ffffff;
+    -fx-background-color: #33CC33;
+    -fx-text-fill: #FFFFFF;
 }

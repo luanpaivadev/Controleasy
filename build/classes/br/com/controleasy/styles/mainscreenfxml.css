@@ -69,7 +69,7 @@
 }
 
 .AnchorPane {
-    -fx-background-color: #FAFAFA;
+    -fx-background-color: #F4F5F9;
     -fx-background-image: url("../images/logo_background.png");
     -fx-background-repeat: no-repeat;
     -fx-background-position: 760px 150px;

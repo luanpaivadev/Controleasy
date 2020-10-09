@@ -23,8 +23,11 @@
                   <Font size="14.0" />
                </font>
             </PasswordField>
-            <Button fx:id="btnEntrar" defaultButton="true" layoutX="50.0" layoutY="261.0" mnemonicParsing="false" onAction="#login" prefHeight="50.0" prefWidth="300.0" styleClass="btnEntrar" text="ENTRAR" />
-            <Hyperlink fx:id="redefinirSenha" layoutX="141.0" layoutY="329.0" styleClass="label" text="Esqueci minha senha" />
+            <Button fx:id="btnEntrar" defaultButton="true" layoutX="50.0" layoutY="261.0" mnemonicParsing="false" onAction="#login" prefHeight="50.0" prefWidth="300.0" styleClass="btnEntrar" text="ENTRAR">
+               <font>
+                  <Font size="16.0" />
+               </font></Button>
+            <Hyperlink fx:id="redefinirSenha" disable="true" layoutX="141.0" layoutY="329.0" styleClass="label" text="Esqueci minha senha" />
             <Label layoutX="173.0" layoutY="129.0" text="v1.0.0">
                <font>
                   <Font name="System Bold" size="12.0" />
