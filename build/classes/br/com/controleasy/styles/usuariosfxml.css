@@ -1,0 +1,20 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.AnchorPane1 {
+    -fx-background-color: #00003C;
+}
+
+.AnchorPane2 {
+    -fx-background-color: #FCFCFC;
+}
+
+.TextField {
+    -fx-font-size: 16px;
+}
+
+.Button:hover {
+    -fx-background-color: #1FAFBF;
+    -fx-text-fill: #ffffff;
+}

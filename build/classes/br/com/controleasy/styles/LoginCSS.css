@@ -1,0 +1,36 @@
+/*
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+*/
+/* 
+    Created on : 03/02/2020, 21:02:57
+    Author     : luanp
+*/
+
+.anchorPane {
+    -fx-background-color: #FAFAFA;
+}
+
+.btnEntrar {
+    -fx-background-color: #00003C;
+    -fx-text-fill: #ffffff;
+}
+
+.btnEntrar:hover{
+    -fx-background-color: rgb(51,204,51);
+}
+
+.label {
+    -fx-text-fill: #00003C;
+}
+
+.pane {
+    -fx-background-color: #FFFFFF;
+    -fx-background-radius: 15px;
+}
+
+.txtUsuario {
+    -fx-font-size: 14px;
+}
+

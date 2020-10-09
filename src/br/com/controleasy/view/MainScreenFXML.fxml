@@ -1,0 +1,254 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.String?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.chart.PieChart?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.input.KeyCodeCombination?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox alignment="CENTER_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1280.0" stylesheets="@../styles/mainscreenfxml.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="br.com.controleasy.controller.MainScreenFXMLController">
+   <children>
+      <HBox alignment="CENTER_LEFT" prefHeight="40.0" styleClass="HBox" stylesheets="@../styles/mainscreenfxml.css">
+         <children>
+            <MenuButton fx:id="menuCadastro" alignment="CENTER" contentDisplay="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" text="CADASTRO" textFill="WHITE">
+              <items>
+                  <MenuItem fx:id="menuItemCategorias" mnemonicParsing="false" onAction="#menuItemCategorias" styleClass="MenuItem" text="CATEGORIAS">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="C" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                <MenuItem fx:id="menuItemDespesas" mnemonicParsing="false" onAction="#menuItemDespesas" styleClass="MenuItem" text="DESPESAS">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="D" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                <MenuItem fx:id="menuItemReceitas" disable="true" mnemonicParsing="false" onAction="#menuItemReceitas" styleClass="MenuItem" text="RECEITAS">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="R" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem fx:id="menuItemUsuarios" mnemonicParsing="false" onAction="#menuItemUsuarios" styleClass="MenuItem" text="USUÁRIOS">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+              </items>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <styleClass>
+                  <String fx:value="MenuButton" />
+                  <String fx:value="MenuButtonCadastro" />
+               </styleClass>
+            </MenuButton>
+            <MenuButton fx:id="menuRelatorios" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" styleClass="MenuButton" text="RELATORIOS" textFill="WHITE">
+              <items>
+                <MenuItem fx:id="menuItemPeriodo" mnemonicParsing="false" onAction="#menuItemPeriodo" styleClass="MenuItem" text="DESPESAS POR PERÍODO">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                  <MenuItem fx:id="menuItemDespesasPorCategoria" mnemonicParsing="false" onAction="#menuItemDespesasPorCategoria" styleClass="MenuItem" text="DESPESAS POR CATEGORIA">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="P" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
+              </items>
+            </MenuButton>
+            <MenuButton fx:id="menuSaldo" alignment="CENTER" contentDisplay="CENTER" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" text="SALDO" textFill="WHITE">
+              <items>
+                <MenuItem fx:id="menuItemSaldoAtual" mnemonicParsing="false" onAction="#menuItemSaldoAtual" styleClass="MenuItem" text="SALDO ATUAL">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="T" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+              </items>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <styleClass>
+                  <String fx:value="MenuButton" />
+                  <String fx:value="MenuButtonSaldo" />
+               </styleClass>
+            </MenuButton>
+            <MenuButton fx:id="menuSobre" alignment="CENTER" disable="true" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" text="SOBRE" textFill="WHITE">
+              <items>
+                <MenuItem fx:id="menuItemVersao" mnemonicParsing="false" onAction="#menuItemVersao" styleClass="MenuItem" text="VERSÃO">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="V" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+              </items>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <styleClass>
+                  <String fx:value="MenuButton" />
+                  <String fx:value="MenuButtonSobre" />
+               </styleClass>
+            </MenuButton>
+            <MenuButton fx:id="menuOpcoes" alignment="CENTER" mnemonicParsing="false" prefHeight="35.0" prefWidth="130.0" text="OPÇÕES" textFill="WHITE">
+              <items>
+                  <MenuItem fx:id="menuItemAlterarUsuario" mnemonicParsing="false" onAction="#menuItemAlterarUsuario" text="ALTERAR USUÁRIO">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="U" control="DOWN" meta="UP" shift="DOWN" shortcut="UP" />
+                     </accelerator></MenuItem>
+                <MenuItem fx:id="menuItemAtualizar" mnemonicParsing="false" onAction="#menuItemAtualizar" styleClass="MenuItem" text="ATUALIZAR">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="A" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
+                     </accelerator></MenuItem>
+                <MenuItem fx:id="menuItemSair" mnemonicParsing="false" onAction="#menuItemSair" styleClass="MenuItem" text="SAIR">
+                     <accelerator>
+                        <KeyCodeCombination alt="UP" code="ESCAPE" control="UP" meta="UP" shift="ANY" shortcut="UP" />
+                     </accelerator></MenuItem>
+              </items>
+               <HBox.margin>
+                  <Insets left="10.0" />
+               </HBox.margin>
+               <styleClass>
+                  <String fx:value="MenuButton" />
+                  <String fx:value="MenuButtonOpcoes" />
+               </styleClass>
+            </MenuButton>
+         </children>
+      </HBox>
+      <AnchorPane styleClass="AnchorPane" VBox.vgrow="ALWAYS">
+         <children>
+            <Pane layoutX="20.0" layoutY="223.0" prefHeight="40.0" prefWidth="500.0" styleClass="Pane_Title">
+               <children>
+                  <Label layoutX="14.0" layoutY="7.0" text="Despesas por categoria" textFill="WHITE">
+                     <font>
+                        <Font name="System Italic" size="18.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Pane>
+            <Group layoutX="20.0" layoutY="58.0">
+               <children>
+                  <VBox layoutY="40.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Label styleClass="Label2" text="DESPESAS A PAGAR">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Group>
+                           <children>
+                              <Label fx:id="labelDespesasAPagar" layoutX="45.0" styleClass="Label1" text="0,00">
+                                 <font>
+                                    <Font name="System Bold Italic" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="14.0" layoutY="9.0" styleClass="Label1" text="R$">
+                                 <font>
+                                    <Font name="System Italic" size="24.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Group>
+                     </children>
+                  </VBox>
+                  <Pane prefHeight="40.0" prefWidth="500.0" styleClass="Pane_Title">
+                     <children>
+                        <Label layoutX="14.0" layoutY="7.0" text="Resumo das despesas" textFill="WHITE">
+                           <font>
+                              <Font name="System Italic" size="18.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </Pane>
+                  <VBox layoutX="250.0" layoutY="40.0" prefHeight="100.0" prefWidth="250.0" style="-fx-background-color: #FFFFFF;">
+                     <children>
+                        <Group />
+                        <Label styleClass="Label2" text="DESPESAS PAGAS">
+                           <font>
+                              <Font name="System Italic" size="12.0" />
+                           </font>
+                           <VBox.margin>
+                              <Insets left="10.0" top="10.0" />
+                           </VBox.margin>
+                        </Label>
+                        <Group>
+                           <children>
+                              <Label fx:id="labelDespesasPagas" layoutX="45.0" styleClass="Label1" text="0,00">
+                                 <font>
+                                    <Font name="System Bold Italic" size="36.0" />
+                                 </font>
+                              </Label>
+                              <Label layoutX="13.0" layoutY="9.0" styleClass="Label1" text="R$">
+                                 <font>
+                                    <Font name="System Italic" size="24.0" />
+                                 </font>
+                                 <padding>
+                                    <Insets right="5.0" />
+                                 </padding>
+                              </Label>
+                           </children>
+                           <VBox.margin>
+                              <Insets left="20.0" top="10.0" />
+                           </VBox.margin>
+                        </Group>
+                     </children>
+                  </VBox>
+               </children>
+            </Group>
+            <Label layoutX="1066.0" layoutY="14.0" text="Atualizado em 06/10/2020" textFill="RED" AnchorPane.rightAnchor="10.0" AnchorPane.topAnchor="10.0">
+               <font>
+                  <Font name="System Bold" size="12.0" />
+               </font>
+            </Label>
+            <Pane layoutX="20.0" layoutY="263.0" prefHeight="400.0" prefWidth="500.0" style="-fx-background-color: #FFFFFF;">
+               <children>
+                  <PieChart fx:id="pieChartDespesas" layoutX="14.0" layoutY="11.0" prefHeight="378.0" prefWidth="472.0" styleClass="PieChart" titleSide="BOTTOM" />
+               </children>
+            </Pane>
+         </children>
+      </AnchorPane>
+      <Pane prefHeight="45.0" styleClass="Pane_Bottom">
+         <children>
+            <Group layoutX="14.0" layoutY="13.0">
+               <children>
+                  <Label text="ID :" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="lblId" layoutX="29.0" text="id" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                  </Label>
+                  <Label layoutX="50.0" text="USUÁRIO :" textFill="WHITE">
+                     <padding>
+                        <Insets right="10.0" />
+                     </padding>
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="lblUsuario" layoutX="120.0" text="usuario" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Label>
+               </children>
+            </Group>
+         </children>
+      </Pane>
+   </children>
+</VBox>
