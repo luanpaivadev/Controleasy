@@ -134,38 +134,43 @@ public class RelatorioPeriodoFXMLController implements Initializable {
 
     public void gerarRelatorio() {
 
-        if (this.getDataInicial().getValue() != null && this.getDataFinal().getValue() != null) {
-            String situacao;
-            String relatorio;
-            String image = "br/com/controleasy/images/logotipo.png";
+        try {
+            if (this.getDataInicial().getValue() != null && this.getDataFinal().getValue() != null) {
+                String situacao;
+                String relatorio;
+                String image = "br/com/controleasy/images/logotipo.png";
 
-            Date dateInicial = Date.from(this.getDataInicial().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
-            Date dateFinal = Date.from(this.getDataFinal().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                Date dateInicial = Date.from(this.getDataInicial().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
+                Date dateFinal = Date.from(this.getDataFinal().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
 
-            if (this.getRadioButtonPagamento().isSelected()) {
-                if (this.getRadioButtonTodos().isSelected()) {
-                    relatorio = "DespesasPorPagamento";
-                    RelatoriosDAO.gerarRelatorioPorPeriodo(dateInicial, dateFinal, relatorio, image);
+                if (this.getRadioButtonPagamento().isSelected()) {
+                    if (this.getRadioButtonTodos().isSelected()) {
+                        relatorio = "DespesasPorPagamento";
+                        RelatoriosDAO.gerarRelatorioPorPeriodo(dateInicial, dateFinal, relatorio, image);
+                    }
                 }
-            }
-            
-            if (this.getRadioButtonVencimento().isSelected()) {
-                if (this.getRadioButtonAPagar().isSelected()) {
-                    situacao = "A pagar";
-                    relatorio = "DespesasPorVencimentoPorSituacao";
-                    RelatoriosDAO.gerarRelatorioPorPeriodoPorSituacao(dateInicial, dateFinal, situacao, relatorio, image);
-                } else if (this.getRadioButtonPagas().isSelected()) {
-                    situacao = "Pago";
-                    relatorio = "DespesasPorVencimentoPorSituacao";
-                    RelatoriosDAO.gerarRelatorioPorPeriodoPorSituacao(dateInicial, dateFinal, situacao, relatorio, image);
-                } else if (this.getRadioButtonTodos().isSelected()) {
-                    relatorio = "DespesasPorVencimento";
-                    RelatoriosDAO.gerarRelatorioPorPeriodo(dateInicial, dateFinal, relatorio, image);
+
+                if (this.getRadioButtonVencimento().isSelected()) {
+                    if (this.getRadioButtonAPagar().isSelected()) {
+                        situacao = "A pagar";
+                        relatorio = "DespesasPorVencimentoPorSituacao";
+                        RelatoriosDAO.gerarRelatorioPorPeriodoPorSituacao(dateInicial, dateFinal, situacao, relatorio, image);
+                    } else if (this.getRadioButtonPagas().isSelected()) {
+                        situacao = "Pago";
+                        relatorio = "DespesasPorVencimentoPorSituacao";
+                        RelatoriosDAO.gerarRelatorioPorPeriodoPorSituacao(dateInicial, dateFinal, situacao, relatorio, image);
+                    } else if (this.getRadioButtonTodos().isSelected()) {
+                        relatorio = "DespesasPorVencimento";
+                        RelatoriosDAO.gerarRelatorioPorPeriodo(dateInicial, dateFinal, relatorio, image);
+                    }
                 }
+            } else {
+                Alerts.showAlert("Controleasy", "CAMPOS OBRIGATÓRIOS", "PREENCHA AS DATAS CORRETAMENTE", Alert.AlertType.INFORMATION);
             }
-        } else {
-            Alerts.showAlert("Controleasy", "CAMPOS OBRIGATÓRIOS", "PREENCHA AS DATAS CORRETAMENTE", Alert.AlertType.INFORMATION);
+        } catch (Exception e) {
+            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
         }
+
     }
 
     @FXML
