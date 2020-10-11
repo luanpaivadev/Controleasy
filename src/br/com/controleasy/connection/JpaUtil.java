@@ -39,7 +39,6 @@ public class JpaUtil {
             }
             return entityManager;
         } catch (Exception e) {
-            //Alerts.showAlert("Easypaper-FX", null, e.getMessage(), Alert.AlertType.ERROR);
             Alerts.showAlert("Controleasy", "SEM COMUNICAÇÃO COM O BANCO DE DADOS", "INICIALIZE O MYSQL", Alert.AlertType.ERROR);
         }
         return null;
