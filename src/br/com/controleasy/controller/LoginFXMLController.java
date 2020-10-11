@@ -153,6 +153,7 @@ public class LoginFXMLController implements Initializable {
                     mainStage.setScene(new Scene(main));
                     mainStage.setTitle("CONTROLEASY - CONTROLE FINANCEIRO");
                     mainStage.setResizable(false);
+                    mainStage.setMaximized(true);
                     mainStage.show();
                     LoginFXMLController.setStage(mainStage); // STAGE DA TELA PRINCIPAL
                     LoginFXMLController.setStageLogin(Main.getStage());
