@@ -100,7 +100,7 @@
                      </accelerator></MenuItem>
                 <MenuItem fx:id="menuItemSair" mnemonicParsing="false" onAction="#menuItemSair" styleClass="MenuItem" text="SAIR">
                      <accelerator>
-                        <KeyCodeCombination alt="UP" code="ESCAPE" control="UP" meta="UP" shift="ANY" shortcut="UP" />
+                        <KeyCodeCombination alt="UP" code="E" control="DOWN" meta="UP" shift="UP" shortcut="UP" />
                      </accelerator></MenuItem>
               </items>
                <HBox.margin>

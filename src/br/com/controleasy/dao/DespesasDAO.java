@@ -104,6 +104,19 @@ public class DespesasDAO {
         }
     }
 
+    public static List<Despesas> getDespesasVencidas() {
+        try {
+            @SuppressWarnings("JPQLValidation")
+            Query query = em.createQuery("SELECT d FROM Despesas d WHERE date(d.vencimento) < curdate() and situacao = 'A PAGAR' order by vencimento");
+            return query.getResultList();
+        } catch (NumberFormatException e) {
+            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+
     public BigDecimal getTotalDespesasAPagar() {
         try {
             @SuppressWarnings("JPQLValidation")

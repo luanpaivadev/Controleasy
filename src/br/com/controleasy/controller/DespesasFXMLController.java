@@ -11,6 +11,7 @@ import br.com.controleasy.model.Categorias;
 import br.com.controleasy.model.Despesas;
 import br.com.controleasy.model.Usuarios;
 import br.com.controleasy.util.Alerts;
+import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.DecimalFormat;
@@ -28,7 +29,10 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -43,7 +47,10 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.input.MouseEvent;
+import javafx.stage.Modality;
+import javafx.stage.Stage;
 
 /**
  * FXML Controller class
@@ -385,6 +392,42 @@ public class DespesasFXMLController implements Initializable {
 
         this.getLnlTotal().setText(this.getValorTotalDespesas());
 
+    }
+
+    public void buscarDespesasVencidas() {
+        try {
+            List<Despesas> list = new DespesasDAO().getDespesasVencidas();
+            if (!list.isEmpty()) {
+                ButtonType sim = new ButtonType("SIM");
+                ButtonType nao = new ButtonType("NÃO");
+                Alert alert = new Alert(Alert.AlertType.CONFIRMATION);
+                alert.setTitle("Controleasy");
+                alert.setHeaderText("ATENÇÃO!");
+                alert.setContentText("EXISTEM DESPESAS VENCIDAS. DESEJA EFETUAR O PAGAMENTO AGORA?");
+                alert.getButtonTypes().setAll(sim, nao);
+                alert.showAndWait().ifPresent(result -> {
+                    if (result == sim) {
+                        try {
+                            Parent parent = FXMLLoader.load(getClass().getResource("/br/com/controleasy/view/DespesasFXML.fxml"));
+                            Image image = new Image(getClass().getResourceAsStream("/br/com/controleasy/images/favicon.png"));
+                            Stage stageDespesas = new Stage();
+                            stageDespesas.getIcons().add(image);
+                            stageDespesas.setScene(new Scene(parent));
+                            stageDespesas.setTitle("DESPESAS");
+                            stageDespesas.setResizable(false);
+                            stageDespesas.initModality(Modality.APPLICATION_MODAL);
+                            stageDespesas.show();
+                        } catch (IOException ex) {
+                            Alerts.showAlert("Controleasy", null, ex.getMessage(), Alert.AlertType.ERROR);
+                        }
+                    } else if (result == nao) {
+                        alert.close();
+                    }
+                });
+            }
+        } catch (Exception e) {
+            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.INFORMATION);
+        }
     }
 
     public String getValorTotalDespesas() {

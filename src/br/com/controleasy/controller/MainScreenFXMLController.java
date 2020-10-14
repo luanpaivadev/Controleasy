@@ -382,6 +382,7 @@ public class MainScreenFXMLController implements Initializable {
 
             this.getTotalDespesasAPagar();
             this.getTotalDespesasPagas();
+            
         } catch (Exception e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
         }
@@ -450,6 +451,7 @@ public class MainScreenFXMLController implements Initializable {
             this.listCategoriaPieChart();
             this.getTotalDespesasAPagar();
             this.getTotalDespesasPagas();
+            new DespesasFXMLController().buscarDespesasVencidas();
         } catch (Exception e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
         }

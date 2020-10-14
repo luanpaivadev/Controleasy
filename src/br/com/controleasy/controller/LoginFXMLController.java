@@ -155,6 +155,7 @@ public class LoginFXMLController implements Initializable {
                     mainStage.setResizable(false);
                     mainStage.setMaximized(true);
                     mainStage.show();
+                    new DespesasFXMLController().buscarDespesasVencidas();
                     LoginFXMLController.setStage(mainStage); // STAGE DA TELA PRINCIPAL
                     LoginFXMLController.setStageLogin(Main.getStage());
                     this.getTxtSenha().setText("");
