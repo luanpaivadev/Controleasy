@@ -12,6 +12,7 @@ import br.com.controleasy.util.Alerts;
 import java.util.List;
 import javafx.scene.control.Alert;
 import javax.persistence.EntityManager;
+import javax.persistence.PersistenceException;
 import javax.persistence.Query;
 
 /**
@@ -36,8 +37,11 @@ public class CategoriasDAO {
             em.persist(c);
             em.getTransaction().commit();
             return true;
-        } catch (Exception e) {
-            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
+        } catch (PersistenceException ex) {
+            Alerts.showAlert("Controleasy", null, "CATEGORIA JÁ CADASTRADA", Alert.AlertType.ERROR);
+            return false;
+        } catch (Exception ex) {
+            Alerts.showAlert("Controleasy", null, ex.getMessage(), Alert.AlertType.ERROR);
             return false;
         } finally {
             em.close();

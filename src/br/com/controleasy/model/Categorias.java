@@ -48,6 +48,11 @@ public class Categorias implements Serializable {
     public Categorias() {
     }
 
+    public Categorias(String categoria, Usuarios usuariosId) {
+        this.categoria = categoria;
+        this.usuariosId = usuariosId;
+    }
+    
     public Categorias(Integer id) {
         this.id = id;
     }

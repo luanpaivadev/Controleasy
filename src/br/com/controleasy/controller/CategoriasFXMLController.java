@@ -5,8 +5,6 @@ import br.com.controleasy.model.Categorias;
 import br.com.controleasy.model.Usuarios;
 import br.com.controleasy.util.Alerts;
 import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
@@ -147,10 +145,7 @@ public class CategoriasFXMLController implements Initializable {
             if (this.getTextFieldCategoria().getText().equals("")) {
                 Alerts.showAlert("Controleasy", "CAMPO OBRIGATÓRIO", "PREENCHA O CAMPO DE CATEGORIA", Alert.AlertType.ERROR);
             } else {
-                Categorias categoria = new Categorias();
-                categoria.setCategoria(this.textFieldCategoria.getText().toUpperCase());
-                categoria.setUsuariosId(new Usuarios(Integer.parseInt(MainScreenFXMLController.getId())));
-                if (new CategoriasDAO().cadastrarCategoria(categoria)) {
+                if (new CategoriasDAO().cadastrarCategoria(new Categorias(this.textFieldCategoria.getText().toUpperCase(), new Usuarios(Integer.parseInt(MainScreenFXMLController.getId()))))) {
                     Alerts.showAlert("Controleasy", null, "CATEGORIA CADASTRADA COM SUCESSO!", Alert.AlertType.INFORMATION);
                     this.getCategorias();
                     this.getButtonCadastrarCategoria().setDisable(false);
