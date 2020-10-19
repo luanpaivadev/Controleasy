@@ -390,8 +390,6 @@ public class DespesasFXMLController implements Initializable {
         this.getAllCategorias();
         this.getDespesasAPagar();
 
-        this.getLnlTotal().setText(this.getValorTotalDespesas());
-
     }
 
     public void buscarDespesasVencidas() {
@@ -444,13 +442,23 @@ public class DespesasFXMLController implements Initializable {
     }
 
     public void getDespesasAPagar() {
+        Double total = 0.00;
+        for(Despesas d : new DespesasDAO().getDespesasAPagar()){
+            total += d.getValor().doubleValue();
+        }
         this.getTableViewDespesas().setItems(FXCollections.observableArrayList(new DespesasDAO().getDespesasAPagar()));
+        this.getLnlTotal().setText(new DecimalFormat("###,##0.00").format(total));
         this.getRadioButtonPagar().setSelected(true);
         this.getRadioButtonPago().setSelected(false);
     }
 
     public void getDespesasPagas() {
+        Double total = 0.00;
+        for(Despesas d : new DespesasDAO().getDespesasPagas()){
+            total += d.getValor().doubleValue();
+        }
         this.getTableViewDespesas().setItems(FXCollections.observableArrayList(new DespesasDAO().getDespesasPagas()));
+        this.getLnlTotal().setText(new DecimalFormat("###,##0.00").format(total));
         this.getRadioButtonPago().setSelected(true);
         this.getRadioButtonPagar().setSelected(false);
     }
@@ -528,7 +536,6 @@ public class DespesasFXMLController implements Initializable {
                 if (new DespesasDAO().cadastrarDespesa(despesa)) {
                     Alerts.showAlert("Controleasy", null, "DESPESA CADASTRADA COM SUCESSO!", Alert.AlertType.INFORMATION);
                     this.getDespesasAPagar();
-                    this.getLnlTotal().setText(this.getValorTotalDespesas());
                     this.getTextFieldId().setText("");
                     this.getTextFieldDescricao().setText("");
                     this.getCategoriaDespesa().getSelectionModel().select(0);
@@ -580,7 +587,6 @@ public class DespesasFXMLController implements Initializable {
                         if (new DespesasDAO().atualizarDespesa(despesa)) {
                             Alerts.showAlert("Controleasy", null, "DESPESA ATUALIZADA COM SUCESSO!", Alert.AlertType.INFORMATION);
                             this.getDespesasAPagar();
-                            this.getLnlTotal().setText(this.getValorTotalDespesas());
                             this.getTextFieldId().setText("");
                             this.getTextFieldDescricao().setText("");
                             this.getCategoriaDespesa().getSelectionModel().select(0);
@@ -623,7 +629,6 @@ public class DespesasFXMLController implements Initializable {
                         if (new DespesasDAO().deletarDespesa(despesa)) {
                             Alerts.showAlert("Controleasy", null, "DESPESA DELETADA COM SUCESSO!", Alert.AlertType.INFORMATION);
                             this.getDespesasAPagar();
-                            this.getLnlTotal().setText(this.getValorTotalDespesas());
                             this.getTextFieldId().setText("");
                             this.getTextFieldDescricao().setText("");
                             this.getCategoriaDespesa().getSelectionModel().select(0);
@@ -665,7 +670,6 @@ public class DespesasFXMLController implements Initializable {
                         if (new DespesasDAO().arquivarDespesa(despesa)) {
                             Alerts.showAlert("Controleasy", null, "DESPESA ARQUIVADA COM SUCESSO!", Alert.AlertType.INFORMATION);
                             this.getDespesasAPagar();
-                            this.getLnlTotal().setText(this.getValorTotalDespesas());
                             this.getTextFieldId().setText("");
                             this.getTextFieldDescricao().setText("");
                             this.getCategoriaDespesa().getSelectionModel().select(0);
