@@ -177,7 +177,7 @@
                   <Pane layoutX="15.0" layoutY="14.0" prefHeight="50.0" prefWidth="548.0" style="-fx-background-color: #F4F5F9;">
                      <children>
                         <DatePicker fx:id="filtroVencimento" layoutX="149.0" layoutY="6.0" prefHeight="37.0" prefWidth="273.0" styleClass="DatePicker" />
-                        <Button fx:id="buttonFiltrar" layoutX="434.0" layoutY="7.0" maxWidth="100.0" mnemonicParsing="false" onAction="#filtrarVencimento" prefHeight="35.0" prefWidth="100.0" styleClass="Button" text="FILTRAR">
+                        <Button fx:id="buttonFiltrar" layoutX="434.0" layoutY="7.0" maxWidth="100.0" mnemonicParsing="false" onAction="#filtrarDespesas" prefHeight="35.0" prefWidth="100.0" styleClass="Button" text="FILTRAR">
                            <font>
                               <Font name="System Bold" size="12.0" />
                            </font>

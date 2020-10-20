@@ -104,7 +104,7 @@ public class DespesasDAO {
         }
     }
 
-    public static List<Despesas> getDespesasVencidas() {
+    public List<Despesas> getDespesasVencidas() {
         try {
             @SuppressWarnings("JPQLValidation")
             Query query = em.createQuery("SELECT d FROM Despesas d WHERE date(d.vencimento) < curdate() and situacao = 'A PAGAR' order by vencimento");

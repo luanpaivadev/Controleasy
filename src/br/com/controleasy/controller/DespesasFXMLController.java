@@ -479,7 +479,7 @@ public class DespesasFXMLController implements Initializable {
     }
 
     @FXML
-    public void filtrarVencimento() {
+    public void filtrarDespesas() {
         try {
             Double total = 0.00;
             if (this.getFiltroVencimento().getValue() != null) {
@@ -761,7 +761,7 @@ public class DespesasFXMLController implements Initializable {
         this.getDespesasPagas();
     }
 
-    private void filtrarVencimento(ActionEvent event) {
-        this.filtrarVencimento();
+    private void filtrarDespesas(ActionEvent event) {
+        this.filtrarDespesas();
     }
 }
