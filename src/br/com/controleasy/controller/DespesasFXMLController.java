@@ -443,7 +443,7 @@ public class DespesasFXMLController implements Initializable {
 
     public void getDespesasAPagar() {
         Double total = 0.00;
-        for(Despesas d : new DespesasDAO().getDespesasAPagar()){
+        for (Despesas d : new DespesasDAO().getDespesasAPagar()) {
             total += d.getValor().doubleValue();
         }
         this.getTableViewDespesas().setItems(FXCollections.observableArrayList(new DespesasDAO().getDespesasAPagar()));
@@ -454,7 +454,7 @@ public class DespesasFXMLController implements Initializable {
 
     public void getDespesasPagas() {
         Double total = 0.00;
-        for(Despesas d : new DespesasDAO().getDespesasPagas()){
+        for (Despesas d : new DespesasDAO().getDespesasPagas()) {
             total += d.getValor().doubleValue();
         }
         this.getTableViewDespesas().setItems(FXCollections.observableArrayList(new DespesasDAO().getDespesasPagas()));
@@ -481,6 +481,7 @@ public class DespesasFXMLController implements Initializable {
     @FXML
     public void filtrarVencimento() {
         try {
+            Double total = 0.00;
             if (this.getFiltroVencimento().getValue() != null) {
                 String situacaoDespesa = null;
                 Date vencimento = Date.from(this.getFiltroVencimento().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant());
@@ -490,7 +491,12 @@ public class DespesasFXMLController implements Initializable {
                 if (this.getRadioButtonPago().isSelected()) {
                     situacaoDespesa = "PAGO";
                 }
-                this.getTableViewDespesas().setItems(FXCollections.observableArrayList(new DespesasDAO().getDespesasPorVencimento(vencimento, situacaoDespesa)));
+                List<Despesas> list = new DespesasDAO().getDespesasPorVencimento(vencimento, situacaoDespesa);
+                for (Despesas d : list) {
+                    total += d.getValor().doubleValue();
+                }
+                this.getLnlTotal().setText(new DecimalFormat("###,##0.00").format(total));
+                this.getTableViewDespesas().setItems(FXCollections.observableArrayList(list));
             } else {
                 Alerts.showAlert("Controleasy", null, "PREENCHA O CAMPO DE VENCIMENTO", Alert.AlertType.INFORMATION);
             }
