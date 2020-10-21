@@ -12,6 +12,9 @@ import java.io.IOException;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.text.DecimalFormat;
+import java.time.LocalDate;
+import java.time.ZoneId;
+import java.util.Date;
 import java.util.List;
 import java.util.ResourceBundle;
 import javafx.collections.FXCollections;
@@ -24,7 +27,9 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.chart.PieChart;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
+import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
@@ -42,8 +47,26 @@ public class MainScreenFXMLController implements Initializable {
 
     private static String id;
     private static String usuario;
+    private static Date dateInicial;
+    private static Date dateFinal;
     private String acesso;
-    
+
+    public static Date getDateInicial() {
+        return dateInicial;
+    }
+
+    public static void setDateInicial(Date dateInicial) {
+        MainScreenFXMLController.dateInicial = dateInicial;
+    }
+
+    public static Date getDateFinal() {
+        return dateFinal;
+    }
+
+    public static void setDateFinal(Date dateFinal) {
+        MainScreenFXMLController.dateFinal = dateFinal;
+    }
+
     private static Stage stage = new Stage();
 
     public static String getId() {
@@ -61,7 +84,7 @@ public class MainScreenFXMLController implements Initializable {
     public static void setUsuario(String usuario) {
         MainScreenFXMLController.usuario = usuario;
     }
-    
+
     @FXML
     private MenuButton menuRelatorios;
 
@@ -117,15 +140,46 @@ public class MainScreenFXMLController implements Initializable {
     private Label labelDespesasAPagar;
 
     @FXML
-    private Label labelDespesasPagas;
-    
-    @FXML
     private MenuItem menuItemAlterarUsuario;
-    
+
     @FXML
     private MenuItem menuItemDespesasPorCategoria;
+
+    @FXML
+    private DatePicker datePickerDataInicial;
+
+    @FXML
+    private DatePicker datePickerDataFinal;
+
+    @FXML
+    private Button buttonPesquisar;
     
+    @FXML
+    private Label labelDespesasTotais;
+
+    public Label getLabelDespesasTotais() {
+        return labelDespesasTotais;
+    }
+
+    public void setLabelDespesasTotais(Label labelDespesasTotais) {
+        this.labelDespesasTotais = labelDespesasTotais;
+    }
     
+    public DatePicker getDatePickerDataInicial() {
+        return datePickerDataInicial;
+    }
+
+    public void setDatePickerDataInicial(DatePicker datePickerDataInicial) {
+        this.datePickerDataInicial = datePickerDataInicial;
+    }
+
+    public DatePicker getDatePickerDataFinal() {
+        return datePickerDataFinal;
+    }
+
+    public void setDatePickerDataFinal(DatePicker datePickerDataFinal) {
+        this.datePickerDataFinal = datePickerDataFinal;
+    }
 
     public MenuItem getMenuItemAlterarUsuario() {
         return menuItemAlterarUsuario;
@@ -134,7 +188,7 @@ public class MainScreenFXMLController implements Initializable {
     public void setMenuItemAlterarUsuario(MenuItem menuItemAlterarUsuario) {
         this.menuItemAlterarUsuario = menuItemAlterarUsuario;
     }
-    
+
     public static Stage getStage() {
         return stage;
     }
@@ -142,7 +196,7 @@ public class MainScreenFXMLController implements Initializable {
     public static void setStage(Stage stage) {
         MainScreenFXMLController.stage = stage;
     }
-    
+
     public MenuButton getMenuCadastro() {
         return menuCadastro;
     }
@@ -247,14 +301,6 @@ public class MainScreenFXMLController implements Initializable {
         this.labelDespesasAPagar = labelDespesasAPagar;
     }
 
-    public Label getLabelDespesasPagas() {
-        return labelDespesasPagas;
-    }
-
-    public void setLabelDespesasPagas(Label labelDespesasPagas) {
-        this.labelDespesasPagas = labelDespesasPagas;
-    }
-
     public PieChart getPieChartDespesas() {
         return pieChartDespesas;
     }
@@ -302,7 +348,7 @@ public class MainScreenFXMLController implements Initializable {
     public void setMenuItemDespesasPorCategoria(MenuItem menuItemDespesasPorCategoria) {
         this.menuItemDespesasPorCategoria = menuItemDespesasPorCategoria;
     }
-    
+
     public void listCategoriaPieChart() {
         try {
             DespesasDAO despesasDAO = new DespesasDAO();
@@ -324,8 +370,7 @@ public class MainScreenFXMLController implements Initializable {
     public void getTotalDespesasAPagar() {
         DecimalFormat df = new DecimalFormat("###,##0.00");
         try {
-            DespesasDAO despesasDAO = new DespesasDAO();
-            BigDecimal despesasAPagar = despesasDAO.getTotalDespesasAPagar();
+            BigDecimal despesasAPagar = new DespesasDAO().getTotalDespesasAPagar(MainScreenFXMLController.getDateInicial(), MainScreenFXMLController.getDateFinal());
             if (despesasAPagar == null) {
                 this.getLabelDespesasAPagar().setText(df.format(0.00));
             } else {
@@ -336,15 +381,15 @@ public class MainScreenFXMLController implements Initializable {
         }
     }
 
-    public void getTotalDespesasPagas() {
+    public void getTotalDespesasTotais() {
         DecimalFormat df = new DecimalFormat("###,##0.00");
         try {
             DespesasDAO despesasDAO = new DespesasDAO();
-            BigDecimal despesasPagas = despesasDAO.getTotalDespesasPagas();
-            if (despesasPagas == null) {
-                this.getLabelDespesasPagas().setText(df.format(0.00));
+            BigDecimal despesasTotais = despesasDAO.getDespesasTotais(MainScreenFXMLController.getDateInicial(), MainScreenFXMLController.getDateFinal());
+            if (despesasTotais == null) {
+                this.getLabelDespesasTotais().setText(df.format(0.00));
             } else {
-                this.getLabelDespesasPagas().setText(df.format(despesasPagas));
+                this.getLabelDespesasTotais().setText(df.format(despesasTotais));
             }
         } catch (Exception e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
@@ -360,17 +405,24 @@ public class MainScreenFXMLController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle rb) {
         try {
+            this.getDatePickerDataInicial().setValue(LocalDate.now().minusDays(30));
+            this.getDatePickerDataFinal().setValue(LocalDate.now());
+
+            MainScreenFXMLController.setDateInicial(Date.from(this.getDatePickerDataInicial().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            MainScreenFXMLController.setDateFinal(Date.from(this.getDatePickerDataFinal().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+
             this.getMenuItemCategorias().setGraphic(new ImageView("/br/com/controleasy/images/img2.png"));
             this.getMenuItemDespesas().setGraphic(new ImageView("/br/com/controleasy/images/img16.png"));
             this.getMenuItemReceitas().setGraphic(new ImageView("/br/com/controleasy/images/img4.png"));
             this.getMenuItemUsuarios().setGraphic(new ImageView("/br/com/controleasy/images/img17.png"));
             this.getMenuItemPeriodo().setGraphic(new ImageView("/br/com/controleasy/images/img1.png"));
             this.getMenuItemDespesasPorCategoria().setGraphic(new ImageView("/br/com/controleasy/images/img1.png"));
-            
+
             MainScreenFXMLController.setId(LoginFXMLController.getId());
             MainScreenFXMLController.setUsuario(LoginFXMLController.getUsuario().toUpperCase());
+
             this.setAcesso(LoginFXMLController.getAcesso());
-            
+
             if (this.getAcesso().equals("PADRÃO")) {
                 this.getMenuItemUsuarios().setDisable(true);
             }
@@ -381,13 +433,13 @@ public class MainScreenFXMLController implements Initializable {
             listCategoriaPieChart();
 
             this.getTotalDespesasAPagar();
-            this.getTotalDespesasPagas();
-            
+            this.getTotalDespesasTotais();
+
         } catch (Exception e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
         }
     }
-    
+
     @FXML
     void menuItemDespesas(ActionEvent event) {
         try {
@@ -404,7 +456,7 @@ public class MainScreenFXMLController implements Initializable {
             Alerts.showAlert("Controleasy", null, ex.getMessage(), Alert.AlertType.ERROR);
         }
     }
-    
+
     @FXML
     void menuItemPeriodo(ActionEvent event) {
         try {
@@ -450,7 +502,7 @@ public class MainScreenFXMLController implements Initializable {
         try {
             this.listCategoriaPieChart();
             this.getTotalDespesasAPagar();
-            this.getTotalDespesasPagas();
+            this.getTotalDespesasTotais();
             new DespesasFXMLController().buscarDespesasVencidas();
         } catch (Exception e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
@@ -476,7 +528,7 @@ public class MainScreenFXMLController implements Initializable {
 
     @FXML
     void menuItemReceitas(ActionEvent event) {
-        
+
     }
 
     @FXML
@@ -499,7 +551,7 @@ public class MainScreenFXMLController implements Initializable {
     @FXML
     void menuItemSaldoAtual(ActionEvent event) {
     }
-    
+
     @FXML
     void menuItemVersao(ActionEvent event) {
     }
@@ -526,6 +578,14 @@ public class MainScreenFXMLController implements Initializable {
         } catch (IOException ex) {
             Alerts.showAlert("Controleasy", null, ex.getMessage(), Alert.AlertType.ERROR);
         }
+    }
+
+    @FXML
+    private void buttonPesquisar(ActionEvent event) {
+        MainScreenFXMLController.setDateInicial(Date.from(this.getDatePickerDataInicial().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        MainScreenFXMLController.setDateFinal(Date.from(this.getDatePickerDataFinal().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+        this.getTotalDespesasAPagar();
+        this.getTotalDespesasTotais();
     }
 
 }

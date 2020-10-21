@@ -8,7 +8,7 @@
   </information>
   <resources>
     <j2se version="1.6+" href="http://java.sun.com/products/autodl/j2se"/>
-    <jar href="Controleasy.jar" size="269546" download="eager" />
+    <jar href="Controleasy.jar" size="270931" download="eager" />
     <jar href="lib\FastInfoset-1.2.15.jar" size="311876" download="eager" />
     <jar href="lib\antlr-2.7.7.jar" size="445288" download="eager" />
     <jar href="lib\byte-buddy-1.10.10.jar" size="3472118" download="eager" />

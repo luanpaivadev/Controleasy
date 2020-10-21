@@ -59,6 +59,25 @@ import javafx.stage.Stage;
  */
 public class DespesasFXMLController implements Initializable {
 
+    private static Date dateInicial;
+    private static Date dateFinal;
+
+    public static Date getDateInicial() {
+        return dateInicial;
+    }
+
+    public static void setDateInicial(Date dateInicial) {
+        DespesasFXMLController.dateInicial = dateInicial;
+    }
+
+    public static Date getDateFinal() {
+        return dateFinal;
+    }
+
+    public static void setDateFinal(Date dateFinal) {
+        DespesasFXMLController.dateFinal = dateFinal;
+    }
+
     private ResourceBundle resources;
 
     private URL location;
@@ -347,7 +366,9 @@ public class DespesasFXMLController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-
+        DespesasFXMLController.setDateInicial(MainScreenFXMLController.getDateInicial());
+        DespesasFXMLController.setDateFinal(MainScreenFXMLController.getDateFinal());
+        
         this.getColumnId().setCellValueFactory(new PropertyValueFactory("id"));
         this.getColumnDescricao().setCellValueFactory(new PropertyValueFactory("descricao"));
         this.getColumnCategoria().setCellValueFactory(new PropertyValueFactory("categoria"));
@@ -429,8 +450,9 @@ public class DespesasFXMLController implements Initializable {
     }
 
     public String getValorTotalDespesas() {
-        if (new DespesasDAO().getValorTotal() != null) {
-            return new DecimalFormat("###,##0.00").format(new DespesasDAO().getValorTotal());
+        BigDecimal total = new DespesasDAO().getValorTotal();
+        if (total != null) {
+            return new DecimalFormat("###,##0.00").format(total);
         } else {
             return "0,00";
         }
@@ -443,10 +465,11 @@ public class DespesasFXMLController implements Initializable {
 
     public void getDespesasAPagar() {
         Double total = 0.00;
-        for (Despesas d : new DespesasDAO().getDespesasAPagar()) {
+        List<Despesas> list = new DespesasDAO().getDespesasAPagar(DespesasFXMLController.getDateInicial(), DespesasFXMLController.getDateFinal());
+        for (Despesas d : list) {
             total += d.getValor().doubleValue();
         }
-        this.getTableViewDespesas().setItems(FXCollections.observableArrayList(new DespesasDAO().getDespesasAPagar()));
+        this.getTableViewDespesas().setItems(FXCollections.observableArrayList(list));
         this.getLnlTotal().setText(new DecimalFormat("###,##0.00").format(total));
         this.getRadioButtonPagar().setSelected(true);
         this.getRadioButtonPago().setSelected(false);
@@ -454,10 +477,11 @@ public class DespesasFXMLController implements Initializable {
 
     public void getDespesasPagas() {
         Double total = 0.00;
-        for (Despesas d : new DespesasDAO().getDespesasPagas()) {
+        List<Despesas> list = new DespesasDAO().getDespesasPagas(DespesasFXMLController.getDateInicial(), DespesasFXMLController.getDateFinal());
+        for (Despesas d : list) {
             total += d.getValor().doubleValue();
         }
-        this.getTableViewDespesas().setItems(FXCollections.observableArrayList(new DespesasDAO().getDespesasPagas()));
+        this.getTableViewDespesas().setItems(FXCollections.observableArrayList(list));
         this.getLnlTotal().setText(new DecimalFormat("###,##0.00").format(total));
         this.getRadioButtonPago().setSelected(true);
         this.getRadioButtonPagar().setSelected(false);

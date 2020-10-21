@@ -72,3 +72,7 @@
     -fx-background-image: url("../images/logo_background.png");
     -fx-background-repeat: no-repeat;
 }
+
+.DatePicker {
+    -fx-font-size: 16px;
+}

@@ -6,6 +6,7 @@
 package br.com.controleasy.dao;
 
 import br.com.controleasy.connection.JpaUtil;
+import br.com.controleasy.controller.DespesasFXMLController;
 import br.com.controleasy.controller.MainScreenFXMLController;
 import br.com.controleasy.model.Despesas;
 import br.com.controleasy.util.Alerts;
@@ -61,10 +62,12 @@ public class DespesasDAO {
         }
     }
 
-    public List<Despesas> getDespesasAPagar() {
+    public List<Despesas> getDespesasAPagar(Date dataInicial, Date dataFinal) {
         try {
             @SuppressWarnings("JPQLValidation")
-            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao = 'A pagar' and d.usuariosId.id = :id ORDER BY d.vencimento");
+            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao = 'A PAGAR' and d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id ORDER BY d.vencimento");
+            query.setParameter("dataInicial", dataInicial);
+            query.setParameter("dataFinal", dataFinal);
             query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId()));
             return query.getResultList();
         } catch (NumberFormatException e) {
@@ -75,9 +78,11 @@ public class DespesasDAO {
         }
     }
 
-    public List<Despesas> getDespesasPagas() {
+    public List<Despesas> getDespesasPagas(Date dataInicial, Date dataFinal) {
         try {
-            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao = 'PAGO' and d.usuariosId.id = :id ORDER BY d.vencimento");
+            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao = 'PAGO' and d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id ORDER BY d.vencimento");
+            query.setParameter("dataInicial", dataInicial);
+            query.setParameter("dataFinal", dataFinal);
             query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId()));
             return query.getResultList();
         } catch (NumberFormatException e) {
@@ -117,11 +122,14 @@ public class DespesasDAO {
         }
     }
 
-    public BigDecimal getTotalDespesasAPagar() {
+    public BigDecimal getTotalDespesasAPagar(Date dataInicial, Date dataFinal) {
         try {
             @SuppressWarnings("JPQLValidation")
-            TypedQuery<BigDecimal> query = em.createQuery("SELECT sum(d.valor) FROM Despesas d WHERE d.situacao = 'A PAGAR' and d.usuariosId.id = :id", BigDecimal.class);
-            return query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId())).getSingleResult();
+            TypedQuery<BigDecimal> query = em.createQuery("SELECT sum(d.valor) FROM Despesas d WHERE d.situacao = 'A PAGAR' and d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id", BigDecimal.class);
+            query.setParameter("dataInicial", dataInicial);
+            query.setParameter("dataFinal", dataFinal);
+            query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId())).getSingleResult();
+            return query.getSingleResult();
         } catch (NumberFormatException e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
             return null;
@@ -135,6 +143,22 @@ public class DespesasDAO {
             @SuppressWarnings("JPQLValidation")
             TypedQuery<BigDecimal> query = em.createQuery("SELECT sum(d.valor) FROM Despesas d WHERE d.situacao = 'PAGO' and d.usuariosId.id = :id", BigDecimal.class);
             return query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId())).getSingleResult();
+        } catch (NumberFormatException e) {
+            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
+            return null;
+        } finally {
+            em.close();
+        }
+    }
+    
+    public BigDecimal getDespesasTotais(Date dataInicial, Date dataFinal){
+        try {
+            @SuppressWarnings("JPQLValidation")
+            TypedQuery<BigDecimal> query = em.createQuery("SELECT sum(d.valor) FROM Despesas d WHERE d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id", BigDecimal.class);
+            query.setParameter("dataInicial", dataInicial);
+            query.setParameter("dataFinal", dataFinal);
+            query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId())).getSingleResult();
+            return query.getSingleResult();
         } catch (NumberFormatException e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
             return null;
