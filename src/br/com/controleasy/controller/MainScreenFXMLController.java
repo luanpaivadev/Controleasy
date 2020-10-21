@@ -33,6 +33,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
+import javafx.scene.control.TitledPane;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.stage.Modality;
@@ -156,6 +157,9 @@ public class MainScreenFXMLController implements Initializable {
 
     @FXML
     private Label labelDespesasTotais;
+
+    @FXML
+    private TitledPane periodoBase;
 
     public Label getLabelDespesasTotais() {
         return labelDespesasTotais;
@@ -586,9 +590,22 @@ public class MainScreenFXMLController implements Initializable {
 
     @FXML
     private void buttonPesquisar(ActionEvent event) {
-        MainScreenFXMLController.setDateInicial(Date.from(this.getDatePickerDataInicial().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        MainScreenFXMLController.setDateFinal(Date.from(this.getDatePickerDataFinal().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        this.atualizarInformacoes();
+        try {
+            int comp = Date.from(this.getDatePickerDataFinal().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()).compareTo(Date.from(this.getDatePickerDataInicial().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+            if (this.getDatePickerDataInicial().getValue() != null && this.getDatePickerDataFinal().getValue() != null) {
+                if (comp != -1) {
+                    MainScreenFXMLController.setDateInicial(Date.from(this.getDatePickerDataInicial().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                    MainScreenFXMLController.setDateFinal(Date.from(this.getDatePickerDataFinal().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
+                    this.atualizarInformacoes();
+                    this.periodoBase.setExpanded(false);
+                } else {
+                    Alerts.showAlert("Controleasy", "DADOS INVÁLIDOS", "PREENCHA OS CAMPOS DE DATA CORRETAMENTE", Alert.AlertType.INFORMATION);
+                }
+            } else {
+                Alerts.showAlert("Controleasy", "(*) CAMPOS OBRIGATÓRIOS", "PREENCHA OS CAMPOS DE DATA CORRETAMENTE", Alert.AlertType.INFORMATION);
+            }
+        } catch (Exception e) {
+            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
+        }
     }
-
 }

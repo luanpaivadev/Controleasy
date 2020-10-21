@@ -118,7 +118,7 @@
       <AnchorPane style="-fx-background-color: #F4F5F9;" styleClass="AnchorPane" VBox.vgrow="ALWAYS">
          <children>
             <Pane layoutX="868.0" layoutY="83.0" opacity="0.5" prefHeight="718.0" prefWidth="718.0" styleClass="BackgroundImage" AnchorPane.bottomAnchor="14.0" AnchorPane.rightAnchor="14.0" />
-            <TitledPane alignment="CENTER" layoutX="14.0" layoutY="14.0" prefHeight="685.0" prefWidth="565.0" text="Despesas" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
+            <TitledPane alignment="CENTER" layoutX="14.0" layoutY="100.0" prefHeight="685.0" prefWidth="565.0" text="Despesas" textAlignment="CENTER" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="70.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #F4F5F9;">
                      <children>
@@ -222,15 +222,21 @@
                   </AnchorPane>
               </content>
             </TitledPane>
-            <TitledPane animated="false" layoutX="605.0" layoutY="20.0" prefHeight="125.0" prefWidth="625.0" text="Período base">
+            <TitledPane fx:id="periodoBase" animated="false" expanded="false" layoutX="648.0" layoutY="20.0" prefHeight="106.0" prefWidth="565.0" text="Período base" AnchorPane.leftAnchor="20.0" AnchorPane.topAnchor="20.0">
               <content>
                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: #f4f5f9;">
                      <children>
-                        <Group layoutX="37.0" layoutY="30.0">
+                        <Group layoutX="19.0" layoutY="13.0">
                            <children>
-                              <DatePicker fx:id="datePickerDataInicial" layoutY="1.0" prefHeight="35.0" prefWidth="200.0" styleClass="DatePicker" />
-                              <DatePicker fx:id="datePickerDataFinal" layoutX="220.0" layoutY="1.0" prefHeight="35.0" prefWidth="200.0" styleClass="DatePicker" />
-                              <Button fx:id="buttonPesquisar" layoutX="450.0" layoutY="1.0" mnemonicParsing="false" onAction="#buttonPesquisar" prefHeight="37.0" prefWidth="100.0" text="Pesquisar" />
+                              <DatePicker fx:id="datePickerDataInicial" layoutY="17.0" prefHeight="35.0" prefWidth="200.0" styleClass="DatePicker" />
+                              <DatePicker fx:id="datePickerDataFinal" layoutX="212.0" layoutY="17.0" prefHeight="35.0" prefWidth="200.0" styleClass="DatePicker" />
+                              <Button fx:id="buttonPesquisar" layoutX="425.0" layoutY="17.0" mnemonicParsing="false" onAction="#buttonPesquisar" prefHeight="37.0" prefWidth="100.0" text="Pesquisar">
+                                 <font>
+                                    <Font size="16.0" />
+                                 </font>
+                              </Button>
+                              <Label text="Data inicial (*)" />
+                              <Label layoutX="212.0" text="Data final (*)" />
                            </children>
                         </Group>
                      </children>

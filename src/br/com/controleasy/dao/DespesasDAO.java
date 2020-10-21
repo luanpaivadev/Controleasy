@@ -6,7 +6,6 @@
 package br.com.controleasy.dao;
 
 import br.com.controleasy.connection.JpaUtil;
-import br.com.controleasy.controller.DespesasFXMLController;
 import br.com.controleasy.controller.MainScreenFXMLController;
 import br.com.controleasy.model.Despesas;
 import br.com.controleasy.util.Alerts;
