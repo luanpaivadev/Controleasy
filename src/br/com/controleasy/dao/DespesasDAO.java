@@ -35,33 +35,6 @@ public class DespesasDAO {
         }
     }
 
-    public BigDecimal getValorTotal() {
-        try {
-            @SuppressWarnings("JPQLValidation")
-            TypedQuery<BigDecimal> query = em.createQuery("SELECT SUM(d.valor) FROM Despesas d WHERE d.usuariosId.id = :id and d.situacao != 'Arquivada'", BigDecimal.class);
-            return query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId())).getSingleResult();
-        } catch (NumberFormatException e) {
-            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
-            return null;
-        } finally {
-            em.close();
-        }
-    }
-
-    public List<Despesas> getAllDespesas() {
-        try {
-            @SuppressWarnings("JPQLValidation")
-            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao != 'Arquivada' and d.usuariosId.id = :id ORDER BY d.vencimento");
-            query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId()));
-            return query.getResultList();
-        } catch (NumberFormatException e) {
-            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
-            return null;
-        } finally {
-            em.close();
-        }
-    }
-
     public List<Despesas> getDespesasAPagar(Date dataInicial, Date dataFinal) {
         try {
             @SuppressWarnings("JPQLValidation")
@@ -138,11 +111,14 @@ public class DespesasDAO {
         }
     }
 
-    public BigDecimal getTotalDespesasPagas() {
+    public BigDecimal getTotalDespesasPagas(Date dataInicial, Date dataFinal) {
         try {
             @SuppressWarnings("JPQLValidation")
-            TypedQuery<BigDecimal> query = em.createQuery("SELECT sum(d.valor) FROM Despesas d WHERE d.situacao = 'PAGO' and d.usuariosId.id = :id", BigDecimal.class);
-            return query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId())).getSingleResult();
+            TypedQuery<BigDecimal> query = em.createQuery("SELECT sum(d.valor) FROM Despesas d WHERE d.situacao = 'PAGO' and d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id", BigDecimal.class);
+            query.setParameter("dataInicial", dataInicial);
+            query.setParameter("dataFinal", dataFinal);
+            query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId())).getSingleResult();
+            return query.getSingleResult();
         } catch (NumberFormatException e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
             return null;
@@ -150,8 +126,8 @@ public class DespesasDAO {
             em.close();
         }
     }
-    
-    public BigDecimal getDespesasTotais(Date dataInicial, Date dataFinal){
+
+    public BigDecimal getDespesasTotais(Date dataInicial, Date dataFinal) {
         try {
             @SuppressWarnings("JPQLValidation")
             TypedQuery<BigDecimal> query = em.createQuery("SELECT sum(d.valor) FROM Despesas d WHERE d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id", BigDecimal.class);
@@ -231,8 +207,8 @@ public class DespesasDAO {
         }
     }
 
-    public List<Despesas> getGroupCategorias() {
-        try {
+    public List<Despesas> getGroupCategorias(Date dataInicial, Date dataFinal) {
+        /*try {
             @SuppressWarnings("JPQLValidation")
             TypedQuery<Object[]> query = em.createQuery("SELECT d.categoria as categoria, SUM(d.valor) as valor FROM Despesas d WHERE d.usuariosId.id = :id and d.situacao != 'Arquivada' GROUP BY d.categoria", Object[].class);
             List<Object[]> results = query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId())).getResultList();
@@ -246,7 +222,27 @@ public class DespesasDAO {
             return null;
         } finally {
             em.close();
+        }*/
+
+        try {
+            @SuppressWarnings("JPQLValidation")
+            TypedQuery<Object[]> query = em.createQuery("SELECT d.categoria as categoria, SUM(d.valor) as valor FROM Despesas d WHERE d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id GROUP BY d.categoria", Object[].class);
+            query.setParameter("dataInicial", dataInicial);
+            query.setParameter("dataFinal", dataFinal);
+            query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId()));
+            List<Object[]> results = query.getResultList();
+            List<Despesas> listDespesa = new ArrayList<>();
+            results.forEach((result) -> {
+                listDespesa.add(new Despesas(result[0].toString(), new BigDecimal(result[1].toString())));
+            });
+            return listDespesa;
+        } catch (NumberFormatException e) {
+            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
+            return null;
+        } finally {
+            em.close();
         }
+
     }
 
 }

@@ -153,7 +153,7 @@ public class MainScreenFXMLController implements Initializable {
 
     @FXML
     private Button buttonPesquisar;
-    
+
     @FXML
     private Label labelDespesasTotais;
 
@@ -164,7 +164,7 @@ public class MainScreenFXMLController implements Initializable {
     public void setLabelDespesasTotais(Label labelDespesasTotais) {
         this.labelDespesasTotais = labelDespesasTotais;
     }
-    
+
     public DatePicker getDatePickerDataInicial() {
         return datePickerDataInicial;
     }
@@ -352,7 +352,7 @@ public class MainScreenFXMLController implements Initializable {
     public void listCategoriaPieChart() {
         try {
             DespesasDAO despesasDAO = new DespesasDAO();
-            List<Despesas> listDespesa = despesasDAO.getGroupCategorias();
+            List<Despesas> listDespesa = despesasDAO.getGroupCategorias(MainScreenFXMLController.getDateInicial(), MainScreenFXMLController.getDateFinal());
 
             ObservableList<PieChart.Data> listPieChart = FXCollections.observableArrayList();
 
@@ -391,6 +391,17 @@ public class MainScreenFXMLController implements Initializable {
             } else {
                 this.getLabelDespesasTotais().setText(df.format(despesasTotais));
             }
+        } catch (Exception e) {
+            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
+        }
+    }
+
+    public void atualizarInformacoes() {
+        try {
+            this.listCategoriaPieChart();
+            this.getTotalDespesasAPagar();
+            this.getTotalDespesasTotais();
+            new DespesasFXMLController().buscarDespesasVencidas();
         } catch (Exception e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
         }
@@ -499,14 +510,7 @@ public class MainScreenFXMLController implements Initializable {
 
     @FXML
     void menuItemAtualizar(ActionEvent event) {
-        try {
-            this.listCategoriaPieChart();
-            this.getTotalDespesasAPagar();
-            this.getTotalDespesasTotais();
-            new DespesasFXMLController().buscarDespesasVencidas();
-        } catch (Exception e) {
-            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
-        }
+        this.atualizarInformacoes();
     }
 
     @FXML
@@ -584,8 +588,7 @@ public class MainScreenFXMLController implements Initializable {
     private void buttonPesquisar(ActionEvent event) {
         MainScreenFXMLController.setDateInicial(Date.from(this.getDatePickerDataInicial().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
         MainScreenFXMLController.setDateFinal(Date.from(this.getDatePickerDataFinal().getValue().atStartOfDay(ZoneId.systemDefault()).toInstant()));
-        this.getTotalDespesasAPagar();
-        this.getTotalDespesasTotais();
+        this.atualizarInformacoes();
     }
 
 }

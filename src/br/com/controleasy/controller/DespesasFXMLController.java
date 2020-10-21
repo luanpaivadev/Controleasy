@@ -449,16 +449,6 @@ public class DespesasFXMLController implements Initializable {
         }
     }
 
-    public String getValorTotalDespesas() {
-        BigDecimal total = new DespesasDAO().getValorTotal();
-        if (total != null) {
-            return new DecimalFormat("###,##0.00").format(total);
-        } else {
-            return "0,00";
-        }
-
-    }
-
     public void getAllDespesas() {
         //this.getTableViewDespesas().setItems(FXCollections.observableArrayList(new DespesasDAO().getAllDespesas()));
     }
