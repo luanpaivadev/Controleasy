@@ -7,6 +7,7 @@ package br.com.controleasy.connection;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
+import java.sql.SQLException;
 
 /**
  *
@@ -19,9 +20,9 @@ public class ConnectionFactory {
     public static Connection getConnection() {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            connection = DriverManager.getConnection("jdbc:mysql://localhost/controleasy?useSSL=false&userTimezone=true&serverTimezone=America/Sao_Paulo", "root", "root");
+            connection = DriverManager.getConnection("jdbc:mysql://192.168.1.60:3306/controleasy?useSSL=false&userTimezone=true&serverTimezone=America/Sao_Paulo", "root", "root");
             return connection;
-        } catch (Exception e) {
+        } catch (ClassNotFoundException | SQLException e) {
             System.out.println(e.getMessage());
         }
         return null;
@@ -32,7 +33,7 @@ public class ConnectionFactory {
             if (connection != null) {
                 connection.close();
             }
-        } catch (Exception e) {
+        } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
     }

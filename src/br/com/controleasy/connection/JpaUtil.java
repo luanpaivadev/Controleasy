@@ -39,7 +39,7 @@ public class JpaUtil {
             }
             return entityManager;
         } catch (Exception e) {
-            Alerts.showAlert("Controleasy", "SEM COMUNICAÇÃO COM O BANCO DE DADOS", "INICIALIZE O MYSQL", Alert.AlertType.ERROR);
+            Alerts.showAlert("Controleasy", "SEM COMUNICAÇÃO COM O BANCO DE DADOS", e.getMessage(), Alert.AlertType.ERROR);
         }
         return null;
     }
