@@ -9,6 +9,7 @@
     <class>br.com.controleasy.model.Categorias</class>
     <class>br.com.controleasy.model.Receitas</class>
     <properties>
+      <property name="javax.persistence.jdbc.url" value="jdbc:mysql://192.168.1.60:3306/controleasy?serverTimezone=America/Sao_Paulo"/>
       <property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
       <property name="javax.persistence.jdbc.user" value="root"/>
       <property name="javax.persistence.jdbc.password" value="root"/>
