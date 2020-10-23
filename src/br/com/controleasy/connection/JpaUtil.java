@@ -60,7 +60,10 @@ public class JpaUtil {
             }
             return entityManager;
         } catch (Exception e) {
-            Alerts.showAlert("Controleasy", "SEM COMUNICAÇÃO COM O BANCO DE DADOS", e.getMessage(), Alert.AlertType.ERROR);
+            Alerts.showAlert("Controleasy", "SEM COMUNICAÇÃO COM O BANCO DE DADOS", "• VERIFIQUE O IP DE CONEXÃO.\n"
+                    + "• VERIFIQUE SE O MYSQL ESTÁ EM EXECUÇÃO.\n"
+                    + "• DESATIVE O FIREWALL\n\n"
+                    + "CASO O ERRO PERSISTA, ENTRE EM CONTATO COM O NOSSO SUPORTE.", Alert.AlertType.ERROR);
         }
         return null;
     }
