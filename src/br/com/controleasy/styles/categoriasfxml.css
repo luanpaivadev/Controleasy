@@ -1,0 +1,35 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.AnchorPane {
+    -fx-background-color: #F2F2F2;
+}
+
+.Button {
+    -fx-background-color: #00003C;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: System;
+    -fx-font-style: normal;
+    -fx-font-weight: bold;
+    -fx-font-size: 12px;
+}
+
+.Button:hover {
+    -fx-background-color: #33CC33;
+    -fx-text-fill: #FFFFFF;
+}
+
+.TextField {
+    -fx-font-family: System;
+    -fx-font-style: normal;
+    -fx-font-size: 14px;
+}
+
+.Table {
+    -fx-font-size: 14px;
+}
+
+.ToolBar {
+    -fx-background-color: #042F40;
+}

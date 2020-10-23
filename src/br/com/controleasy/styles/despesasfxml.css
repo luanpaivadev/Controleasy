@@ -1,0 +1,36 @@
+.Button:hover {
+    -fx-background-color: #1FAFBF;
+    -fx-text-fill: #ffffff;
+}
+
+.TextField {
+    -fx-font-size: 16px;
+}
+
+.DatePicker {
+    -fx-font-size: 16px;
+}
+
+.ComboBox {
+    -fx-font-size: 16px;
+}
+
+.AnchorPane1 {
+    -fx-background-color: #00003C;
+}
+
+.AnchorPane2 {
+    -fx-background-color: #FCFCFC;
+}
+
+.ToolBar {
+    -fx-background-color: #042F40;
+}
+
+.Table {
+    -fx-font-size: 16px;
+}
+
+
+
+

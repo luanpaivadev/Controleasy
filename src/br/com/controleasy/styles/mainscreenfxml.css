@@ -1,0 +1,78 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.PieChart {
+    -fx-background-color: #FFFFFF;
+}
+
+.HBox {
+    -fx-background-color: #00003C;
+}
+
+.MenuButton {
+    -fx-background-color: #00003C;
+    -fx-background-radius: 5px;
+}
+
+/*.MenuButtonCadastro {
+    -fx-background-image: url("../images/plus.png");
+    -fx-background-repeat: no-repeat;
+     -fx-background-position: 10px 10px;
+}
+
+.MenuButtonSaldo {
+    -fx-background-image: url("../images/coins.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px 10px;
+}
+
+.MenuButtonSobre {
+    -fx-background-image: url("../images/help.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px 10px;
+}
+
+.MenuButtonOpcoes {
+    -fx-background-image: url("../images/folder_explore.png");
+    -fx-background-repeat: no-repeat;
+    -fx-background-position: 10px 10px;
+}*/
+
+.MenuButton:hover {
+    -fx-background-color: #33CC33;
+}
+
+.MenuItem:hover {
+    -fx-background-color: #33CC33;
+}
+
+.Pane_Title {
+    -fx-background-color: #00003C;
+}
+
+.Pane {
+    -fx-background-color: #FFFFFF;
+}
+
+.Pane_Bottom {
+    -fx-background-color: #00003C;
+}
+
+.Label1 {
+    /*-fx-text-fill: #33CC33;*/
+    -fx-text-fill: #00003C;
+}
+
+.Label2 {
+    -fx-text-fill: #00003C;
+}
+
+.BackgroundImage {
+    -fx-background-image: url("../images/logo_background.png");
+    -fx-background-repeat: no-repeat;
+}
+
+.DatePicker {
+    -fx-font-size: 16px;
+}

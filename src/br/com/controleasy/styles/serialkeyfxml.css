@@ -1,0 +1,31 @@
+/*
+ * Empty Stylesheet file.
+ */
+
+.mainFxmlClass {
+    -fx-background-color: #F2F2F2;
+}
+
+.AnchorPane {
+    -fx-background-color: #FFFFFF;
+}
+
+.Label {
+    -fx-text-fill: #00003C;
+}
+
+.Button {
+    -fx-background-color: #00003C;
+    -fx-text-fill: #FFFFFF;
+    -fx-font-family: System;
+    -fx-font-style: normal;
+    -fx-font-size: 18px;
+}
+
+.Button:hover {
+    -fx-background-color: #33CC33;
+}
+
+.TextField {
+    -fx-font-size: 24px;
+}
