@@ -8,7 +8,7 @@
 	<parameter name="idUsuario" class="java.lang.Integer"/>
 	<parameter name="image" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select categoria, sum(valor) from despesas where vencimento between $P{dataInicial} and $P{dataFinal} and situacao != 'Arquivada' and usuarios_id = $P{idUsuario}  GROUP BY categoria]]>
+		<![CDATA[select categoria, sum(valor) from despesas where vencimento between $P{dataInicial} and $P{dataFinal} and situacao != 'Arquivada' and usuarios_id = $P{idUsuario}  GROUP BY categoria ORDER BY categoria]]>
 	</queryString>
 	<field name="categoria" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="categoria"/>
