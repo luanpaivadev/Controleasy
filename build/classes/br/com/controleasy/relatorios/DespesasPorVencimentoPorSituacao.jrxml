@@ -9,7 +9,7 @@
 	<parameter name="situacao" class="java.lang.String"/>
 	<parameter name="image" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[select * from despesas where vencimento between $P{dataInicial} and $P{dataFinal} and usuarios_id = $P{idUsuario} and situacao = $P{situacao} order by vencimento]]>
+		<![CDATA[select * from despesas where vencimento between $P{dataInicial} and $P{dataFinal} and usuarios_id = $P{idUsuario} and situacao = $P{situacao} order by vencimento, descricao]]>
 	</queryString>
 	<field name="descricao" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.name" value="descricao"/>
