@@ -37,7 +37,7 @@ public class DespesasDAO {
     public List<Despesas> getDespesasAPagar(Date dataInicial, Date dataFinal) {
         try {
             @SuppressWarnings("JPQLValidation")
-            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao = 'A PAGAR' and d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id ORDER BY d.vencimento");
+            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao = 'A PAGAR' and d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id ORDER BY d.vencimento, d.descricao");
             query.setParameter("dataInicial", dataInicial);
             query.setParameter("dataFinal", dataFinal);
             query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId()));
@@ -52,7 +52,7 @@ public class DespesasDAO {
 
     public List<Despesas> getDespesasPagas(Date dataInicial, Date dataFinal) {
         try {
-            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao = 'PAGO' and d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id ORDER BY d.vencimento");
+            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao = 'PAGO' and d.vencimento between :dataInicial and :dataFinal and d.usuariosId.id = :id ORDER BY d.vencimento, d.descricao");
             query.setParameter("dataInicial", dataInicial);
             query.setParameter("dataFinal", dataFinal);
             query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId()));
@@ -68,7 +68,7 @@ public class DespesasDAO {
     public List<Despesas> getDespesasPorVencimento(Date vencimento, String situacao) {
         try {
             @SuppressWarnings("JPQLValidation")
-            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao = :situacao and d.vencimento = :vencimento and d.usuariosId.id = :id ORDER BY d.vencimento");
+            Query query = em.createQuery("SELECT d FROM Despesas d WHERE d.situacao = :situacao and d.vencimento = :vencimento and d.usuariosId.id = :id ORDER BY d.vencimento, d.descricao");
             query.setParameter("situacao", situacao);
             query.setParameter("vencimento", vencimento);
             query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId()));
@@ -84,7 +84,7 @@ public class DespesasDAO {
     public List<Despesas> getDespesasVencidas() {
         try {
             @SuppressWarnings("JPQLValidation")
-            Query query = em.createQuery("SELECT d FROM Despesas d WHERE date(d.vencimento) < curdate() and situacao = 'A PAGAR' order by vencimento");
+            Query query = em.createQuery("SELECT d FROM Despesas d WHERE date(d.vencimento) < curdate() and situacao = 'A PAGAR' order by vencimento, d.descricao");
             return query.getResultList();
         } catch (NumberFormatException e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
