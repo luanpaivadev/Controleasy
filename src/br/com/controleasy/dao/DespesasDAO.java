@@ -84,7 +84,8 @@ public class DespesasDAO {
     public List<Despesas> getDespesasVencidas() {
         try {
             @SuppressWarnings("JPQLValidation")
-            Query query = em.createQuery("SELECT d FROM Despesas d WHERE date(d.vencimento) < curdate() and situacao = 'A PAGAR' order by vencimento, d.descricao");
+            Query query = em.createQuery("SELECT d FROM Despesas d WHERE date(d.vencimento) < curdate() and situacao = 'A PAGAR' and d.usuariosId.id = :id order by vencimento, d.descricao");
+            query.setParameter("id", Integer.parseInt(MainScreenFXMLController.getId()));
             return query.getResultList();
         } catch (NumberFormatException e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
