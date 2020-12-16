@@ -173,12 +173,12 @@ public class LoginFXMLController implements Initializable {
 
     public void getUsuarios() {
         try {
-            List<String> usuarios = new UsuariosDAO().getUsuarios();
+            List<Usuarios> usuarios = new UsuariosDAO().getUsuarios();
             List<String> list = new ArrayList<>();
             if (!usuarios.isEmpty()) {
-                usuarios.forEach((u) -> {
-                    list.add(u.toUpperCase());
-                });
+                for(Usuarios u : usuarios){
+                    list.add(u.getUsuario().toUpperCase());
+                }
                 ObservableList observableList = FXCollections.observableList(list);
                 this.getTxtUsuario().setItems(observableList);
                 this.getTxtUsuario().getSelectionModel().select(0);

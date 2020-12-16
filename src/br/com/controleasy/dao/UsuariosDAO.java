@@ -12,7 +12,6 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
-import javax.persistence.TypedQuery;
 
 /**
  *
@@ -30,21 +29,9 @@ public class UsuariosDAO {
         }
     }
 
-    public List<String> getUsuarios() {
+    public List<Usuarios> getUsuarios() {
         try {
-            TypedQuery<String> query = em.createQuery("SELECT u.usuario FROM Usuarios u ORDER BY u.usuario", String.class);
-            return query.getResultList();
-        } catch (Exception e) {
-            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
-            return null;
-        } finally {
-            em.close();
-        }
-    }
-
-    public List<Usuarios> getListUsuarios() {
-        try {
-            Query query = em.createQuery("SELECT u FROM Usuarios u ORDER BY u.nome");
+            Query query = em.createQuery("FROM Usuarios u ORDER BY u.usuario", Usuarios.class);
             return query.getResultList();
         } catch (Exception e) {
             Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);

@@ -284,7 +284,7 @@ public class UsuariosFXMLController implements Initializable {
 
     public void getUsuarios() {
         try {
-            List<Usuarios> result = new UsuariosDAO().getListUsuarios();
+            List<Usuarios> result = new UsuariosDAO().getUsuarios();
             List<Usuarios> listUsuarios = new ArrayList<>();
             if (!result.isEmpty()) {
                 result.forEach((u) -> {
