@@ -165,7 +165,7 @@ public class DespesasDAO {
             despesas.setCategoria(d.getCategoria());
             despesas.setValor(d.getValor());
             despesas.setVencimento(d.getVencimento());
-            despesas.setPagamento(d.getPagamento());
+            despesas.setPagamento(despesas.getPagamento() == null ? d.getPagamento() : despesas.getPagamento());
             despesas.setSituacao(d.getSituacao());
             em.getTransaction().commit();
             return true;
