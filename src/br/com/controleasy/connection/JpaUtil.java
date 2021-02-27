@@ -49,9 +49,11 @@ public class JpaUtil {
             if (entityManagerFactory == null) {
                 Properties properties = getProperties();
                 Map map = new HashMap();
-                String ip = properties.getProperty("ip_ServidorLocal");
-                map.put("javax.persistence.jdbc.url", "jdbc:mysql://" + ip + "/controleasy?serverTimezone=America/Sao_Paulo");
-                entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, map);
+    			String url = properties.getProperty("javax.persistence.jdbc.url");
+    			String user = properties.getProperty("javax.persistence.jdbc.user");
+    			map.put("javax.persistence.jdbc.url", url);
+    			map.put("javax.persistence.jdbc.user", user);
+    			entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, map);
             }
             EntityManager entityManager = threadEntityManager.get();
             if (entityManager == null || !entityManager.isOpen()) {
@@ -60,9 +62,9 @@ public class JpaUtil {
             }
             return entityManager;
         } catch (Exception e) {
-            Alerts.showAlert("Controleasy", "SEM COMUNICAÇÃO COM O BANCO DE DADOS", "• VERIFIQUE O IP DE CONEXÃO.\n"
-                    + "• VERIFIQUE SE O MYSQL ESTÁ EM EXECUÇÃO.\n"
-                    + "• DESATIVE O FIREWALL\n\n"
+            Alerts.showAlert("Controleasy", "SEM COMUNICAÇÃO COM O BANCO DE DADOS!", "* VERIFIQUE A URL DE CONEXÃO.\n"
+                    + "* VERIFIQUE SE O BANCO DE DADOS ESTÁ EM EXECUÇÃO.\n"
+                    + "* DESATIVE O FIREWALL.\n\n"
                     + "CASO O ERRO PERSISTA, ENTRE EM CONTATO COM O NOSSO SUPORTE.", Alert.AlertType.ERROR);
         }
         return null;

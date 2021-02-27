@@ -1,36 +1,48 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <classpath>
-	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
 	<classpathentry kind="src" path="src"/>
-	<classpathentry kind="lib" path="dist/Controleasy.jar"/>
-	<classpathentry kind="lib" path="dist/lib/antlr-2.7.7.jar"/>
-	<classpathentry kind="lib" path="dist/lib/byte-buddy-1.10.10.jar"/>
-	<classpathentry kind="lib" path="dist/lib/classmate-1.5.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/commons-beanutils-1.8.2.jar"/>
-	<classpathentry kind="lib" path="dist/lib/commons-collections-3.2.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/commons-digester-2.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/commons-logging-1.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/dom4j-2.1.3.jar"/>
-	<classpathentry kind="lib" path="dist/lib/FastInfoset-1.2.15.jar"/>
-	<classpathentry kind="lib" path="dist/lib/groovy-all-2.0.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/hibernate-commons-annotations-5.1.0.Final.jar"/>
-	<classpathentry kind="lib" path="dist/lib/hibernate-core-5.4.21.Final.jar"/>
-	<classpathentry kind="lib" path="dist/lib/istack-commons-runtime-3.0.7.jar"/>
-	<classpathentry kind="lib" path="dist/lib/iText-2.1.7.js2.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jandex-2.1.3.Final.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jasperreports-5.6.0.jar"/>
-	<classpathentry kind="lib" path="dist/lib/javassist-3.24.0-GA.jar"/>
-	<classpathentry kind="lib" path="dist/lib/javax.activation-api-1.2.0.jar"/>
-	<classpathentry kind="lib" path="dist/lib/javax.persistence-api-2.2.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jaxb-api-2.3.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jaxb-runtime-2.3.1.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jboss-logging-3.3.2.Final.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jboss-transaction-api_1.2_spec-1.1.1.Final.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jcommon-1.0.15.jar"/>
-	<classpathentry kind="lib" path="dist/lib/jfreechart-1.0.14.jar"/>
-	<classpathentry kind="lib" path="dist/lib/mysql-connector-java-8.0.18.jar"/>
-	<classpathentry kind="lib" path="dist/lib/poi-3.7-20101029.jar"/>
-	<classpathentry kind="lib" path="dist/lib/stax-ex-1.8.jar"/>
-	<classpathentry kind="lib" path="dist/lib/txw2-2.3.1.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER">
+		<attributes>
+			<attribute name="module" value="true"/>
+		</attributes>
+	</classpathentry>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/antlr-2.7.7.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/byte-buddy-1.10.10.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/classmate-1.5.1.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/dom4j-2.1.3.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/FastInfoset-1.2.15.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/hibernate-commons-annotations-5.1.0.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/hibernate-core-5.4.21.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/istack-commons-runtime-3.0.7.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/jandex-2.1.3.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/javassist-3.24.0-GA.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/javax.activation-api-1.2.0.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/javax.persistence-api-2.2.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/jaxb-api-2.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/jaxb-runtime-2.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/jboss-logging-3.3.2.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/jboss-transaction-api_1.2_spec-1.1.1.Final.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/stax-ex-1.8.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/hibernate-release-5.4.21.Final/hibernate-release-5.4.21.Final/lib/required/txw2-2.3.1.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/JasperReports Libs/commons-beanutils-1.8.2.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/JasperReports Libs/commons-collections-3.2.1.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/JasperReports Libs/commons-digester-2.1.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/JasperReports Libs/commons-logging-1.1.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/JasperReports Libs/groovy-all-2.0.1.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/JasperReports Libs/iText-2.1.7.js2.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/JasperReports Libs/jasperreports-5.6.0.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/JasperReports Libs/jcommon-1.0.15.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/JasperReports Libs/jfreechart-1.0.14.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/JasperReports Libs/poi-3.7-20101029.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.base.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.controls.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.fxml.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.graphics.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.media.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.swing.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx.web.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/openjfx-11.0.2_windows-x64_bin-sdk/javafx-sdk-11.0.2/lib/javafx-swt.jar"/>
+	<classpathentry kind="lib" path="C:/Program Files (x86)/MySQL/Connector J 8.0/mysql-connector-java-8.0.23.jar"/>
+	<classpathentry kind="lib" path="D:/Meus Arquivos/Controleasy files/Controleasy files/PLUGINS AND LIBS/postgresql-42.2.19.jar"/>
 	<classpathentry kind="output" path="build/classes"/>
 </classpath>

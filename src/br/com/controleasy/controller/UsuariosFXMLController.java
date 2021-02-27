@@ -361,8 +361,8 @@ public class UsuariosFXMLController implements Initializable {
                 usuario.setSenha(hexString.toString());
             } catch (UnsupportedEncodingException | NoSuchAlgorithmException e) {
             }
-            usuario.setNome(this.getTextFieldNome().getText());
-            usuario.setUsuario(this.getTextFieldUsuario().getText());
+            usuario.setNome(this.getTextFieldNome().getText().toUpperCase());
+            usuario.setUsuario(this.getTextFieldUsuario().getText().toUpperCase());
             if (this.getAcessoAdmin().isSelected()) {
                 usuario.setAcesso("ADMIN");
             } else if (this.getAcessoPadrao().isSelected()) {
