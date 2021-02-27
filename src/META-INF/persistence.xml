@@ -9,11 +9,8 @@
     <class>br.com.controleasy.model.Categorias</class>
     <class>br.com.controleasy.model.Receitas</class>
     <properties>
-      <property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
       <property name="javax.persistence.jdbc.password" value="admin"/>
       <property name="hibernate.hbm2ddl.auto" value="update"/>
-      <!-- https://docs.jboss.org/hibernate/orm/5.4/javadocs/org/hibernate/dialect/package-summary.html -->
-      <property name="hibernate.dialect" value="org.hibernate.dialect.PostgreSQLDialect"/>
     </properties>
   </persistence-unit>
 </persistence>

@@ -12,6 +12,7 @@ import java.util.List;
 import javafx.scene.control.Alert;
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
+import javax.persistence.TypedQuery;
 
 /**
  *
@@ -38,14 +39,14 @@ public class LoginDAO {
     }
 
     @SuppressWarnings("null")
-    public List<Usuarios> login(Usuarios usuario) {
+    public Usuarios login(Usuarios usuario) {
         try {
-            Query query = em.createQuery("SELECT u FROM Usuarios u WHERE u.usuario = :usuario AND u.senha = :senha");
+            TypedQuery<Usuarios> query = em.createQuery("SELECT u FROM Usuarios u WHERE u.usuario = :usuario AND u.senha = :senha", Usuarios.class);
             query.setParameter("usuario", usuario.getUsuario());
             query.setParameter("senha", usuario.getSenha());
-            return query.getResultList();
+            return query.getSingleResult();
         } catch (Exception e) {
-            Alerts.showAlert("Controleasy", "Login", e.getMessage(), Alert.AlertType.ERROR);
+            Alerts.showAlert("Controleasy", "LOGIN", "SENHA INVÁLIDA!", Alert.AlertType.INFORMATION);
         } finally {
             em.close();
         }

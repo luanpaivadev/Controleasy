@@ -23,67 +23,72 @@ import javax.persistence.Persistence;
  */
 public class JpaUtil {
 
-    private static final String PERSISTENCE_UNIT = "ControleasyPU";
+	private static final String PERSISTENCE_UNIT = "ControleasyPU";
 
-    private static final ThreadLocal<EntityManager> threadEntityManager = new ThreadLocal<EntityManager>();
+	private static final ThreadLocal<EntityManager> threadEntityManager = new ThreadLocal<EntityManager>();
 
-    private static EntityManagerFactory entityManagerFactory;
+	private static EntityManagerFactory entityManagerFactory;
 
-    public JpaUtil() {
-    }
-    
-    public static Properties getProperties() {
-        try {
-            Properties properties = new Properties();
-            FileInputStream file = new FileInputStream("C:/Program Files/Controleasy/properties/config.properties");
-            properties.load(file);
-            return properties;
-        } catch (IOException e) {
-            Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
-        }
-        return null;
-    }
+	public JpaUtil() {
+	}
 
-    public static EntityManager getEntityManager() {
-        try {
-            if (entityManagerFactory == null) {
-                Properties properties = getProperties();
-                Map map = new HashMap();
-    			String url = properties.getProperty("javax.persistence.jdbc.url");
-    			String user = properties.getProperty("javax.persistence.jdbc.user");
-    			map.put("javax.persistence.jdbc.url", url);
-    			map.put("javax.persistence.jdbc.user", user);
-    			entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, map);
-            }
-            EntityManager entityManager = threadEntityManager.get();
-            if (entityManager == null || !entityManager.isOpen()) {
-                entityManager = entityManagerFactory.createEntityManager();
-                JpaUtil.threadEntityManager.set(entityManager);
-            }
-            return entityManager;
-        } catch (Exception e) {
-            Alerts.showAlert("Controleasy", "SEM COMUNICAÇÃO COM O BANCO DE DADOS!", "* VERIFIQUE A URL DE CONEXÃO.\n"
-                    + "* VERIFIQUE SE O BANCO DE DADOS ESTÁ EM EXECUÇÃO.\n"
-                    + "* DESATIVE O FIREWALL.\n\n"
-                    + "CASO O ERRO PERSISTA, ENTRE EM CONTATO COM O NOSSO SUPORTE.", Alert.AlertType.ERROR);
-        }
-        return null;
-    }
+	public static Properties getProperties() {
+		try {
+			Properties properties = new Properties();
+			FileInputStream file = new FileInputStream("C:/Program Files/Controleasy/properties/config.properties");
+			properties.load(file);
+			return properties;
+		} catch (IOException e) {
+			Alerts.showAlert("Controleasy", null, e.getMessage(), Alert.AlertType.ERROR);
+		}
+		return null;
+	}
 
-    public static void closeEntityManager() {
-        EntityManager em = threadEntityManager.get();
-        if (em != null) {
-            EntityTransaction transaction = em.getTransaction();
-            if (transaction.isActive()) {
-                transaction.commit();
-            }
-            em.close();
-            threadEntityManager.set(null);
-        }
-    }
+	public static EntityManager getEntityManager() {
+		try {
+			if (entityManagerFactory == null) {
+				Properties properties = getProperties();
+				Map<String, String> map = new HashMap<String, String>();
+				String url = properties.getProperty("javax.persistence.jdbc.url");
+				String driver = properties.getProperty("javax.persistence.jdbc.driver");
+				String user = properties.getProperty("javax.persistence.jdbc.user");
+				String dialect = properties.getProperty("hibernate.dialect");
+				map.put("javax.persistence.jdbc.url", url);
+				map.put("javax.persistence.jdbc.driver", driver);
+				map.put("javax.persistence.jdbc.user", user);
+				map.put("hibernate.dialect", dialect);
+				entityManagerFactory = Persistence.createEntityManagerFactory(PERSISTENCE_UNIT, map);
+			}
+			EntityManager entityManager = threadEntityManager.get();
+			if (entityManager == null || !entityManager.isOpen()) {
+				entityManager = entityManagerFactory.createEntityManager();
+				JpaUtil.threadEntityManager.set(entityManager);
+			}
+			return entityManager;
+		} catch (Exception e) {
+			Alerts.showAlert("Controleasy", "SEM COMUNICAÇÃO COM O BANCO DE DADOS!",
+					"* VERIFIQUE OS DADOS NO ARQUIVO DE CONFIGURAÇÃO.\n"
+							+ "* VERIFIQUE SE O BANCO DE DADOS ESTÁ EM EXECUÇÃO.\n" + "* DESATIVE O FIREWALL.\n\n"
+							+ "CASO O ERRO PERSISTA, ENTRE EM CONTATO COM O NOSSO SUPORTE.",
+					Alert.AlertType.ERROR);
+		}
+		return null;
+	}
 
-    public static void closeEntityManagerFactory() {
-        closeEntityManager();
-        entityManagerFactory.close();
-    }
+	public static void closeEntityManager() {
+		EntityManager em = threadEntityManager.get();
+		if (em != null) {
+			EntityTransaction transaction = em.getTransaction();
+			if (transaction.isActive()) {
+				transaction.commit();
+			}
+			em.close();
+			threadEntityManager.set(null);
+		}
+	}
+
+	public static void closeEntityManagerFactory() {
+		closeEntityManager();
+		entityManagerFactory.close();
+	}
 }

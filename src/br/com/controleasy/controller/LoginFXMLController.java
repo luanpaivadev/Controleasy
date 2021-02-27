@@ -141,14 +141,11 @@ public class LoginFXMLController implements Initializable {
 				user.setUsuario(this.getTxtUsuario().getSelectionModel().getSelectedItem().toString());
 				user.setSenha(hex.toString());
 
-				List<Usuarios> listUsuarios = new LoginDAO().login(user);
-				for (Usuarios u : listUsuarios) {
-					System.out.println(u.getNome());
-				}
-				if (!listUsuarios.isEmpty()) {
-					LoginFXMLController.setId(Integer.toString(listUsuarios.get(0).getId()));
-					LoginFXMLController.setUsuario(listUsuarios.get(0).getUsuario());
-					LoginFXMLController.setAcesso(listUsuarios.get(0).getAcesso());
+				Usuarios usuario = new LoginDAO().login(user);
+				if (usuario != null) {
+					LoginFXMLController.setId(Integer.toString(usuario.getId()));
+					LoginFXMLController.setUsuario(usuario.getUsuario());
+					LoginFXMLController.setAcesso(usuario.getAcesso());
 					Parent main = FXMLLoader
 							.load(getClass().getResource("/br/com/controleasy/view/MainScreenFXML.fxml"));
 					Stage mainStage = new Stage();
@@ -164,8 +161,6 @@ public class LoginFXMLController implements Initializable {
 					LoginFXMLController.setStageLogin(Main.getStage());
 					this.getTxtSenha().setText("");
 					Main.getStage().close();
-				} else {
-					Alerts.showAlert("Controleasy", "LOGIN", "SENHA INVÁLIDA!", Alert.AlertType.INFORMATION);
 				}
 			} else {
 				Alerts.showAlert("Controleasy", "LOGIN", "PREENCHA O CAMPO DE SENHA", Alert.AlertType.INFORMATION);
